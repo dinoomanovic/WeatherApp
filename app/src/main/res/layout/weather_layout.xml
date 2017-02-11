@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:text="Tuzla, BA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:id="@+id/placeId"
+        android:textSize="25dp"
+        android:textColor="#fafafa"
+        />
+
+    <TextView
+        android:text="20 C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/placeId"
+        android:layout_alignRight="@+id/placeId"
+        android:layout_alignEnd="@+id/placeId"
+        android:layout_marginTop="28dp"
+        android:textSize="25dp"
+
+        android:textColor="#fafafa"
+        android:id="@+id/tempId" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_menu_gallery"
+        android:layout_alignBottom="@+id/tempId"
+        android:layout_alignLeft="@+id/placeId"
+        android:layout_alignStart="@+id/placeId"
+        android:id="@+id/imageView2" />
+
+    <TextView
+        android:text="Wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:textSize="25dp"
+        android:textColor="#fafafa"
+        android:id="@+id/windId" />
+
+    <TextView
+        android:text="Pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/pressureId"
+        android:textSize="25dp"
+        android:textColor="#fafafa"
+        android:layout_below="@+id/windId"
+        android:layout_alignLeft="@+id/windId"
+        android:layout_alignStart="@+id/windId" />
+
+    <TextView
+        android:text="Humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textSize="25dp"
+        android:textColor="#fafafa"
+        android:id="@+id/humidityId"
+        android:layout_below="@+id/pressureId"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_toStartOf="@+id/imageView2" />
+
+
+</RelativeLayout>
