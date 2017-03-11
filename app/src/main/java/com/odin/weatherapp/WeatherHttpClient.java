@@ -16,11 +16,11 @@ import com.odin.weatherapp.RemoteFetch;
 
 public class WeatherHttpClient {
 
-public String getWeather(String place){
+public String getWeather(String place) {
     HttpURLConnection connection = null;
     InputStream inputStream = null;
     try {
-        connection = (HttpURLConnection) (new URL(RemoteFetch.OPEN_WEATHER_MAP_API + place)).openConnection();
+        connection = (HttpURLConnection) (new URL(RemoteFetch.OPEN_WEATHER_MAP_API + place + RemoteFetch.APP_ID)).openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
         connection.setDoOutput(true);
@@ -31,7 +31,7 @@ public String getWeather(String place){
         // Pass input string to buffer
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line = null;
-        while((line = bufferedReader.readLine()) != null){
+        while ((line = bufferedReader.readLine()) != null) {
             stringBuffer.append(line + "\r\n");
         }
         inputStream.close();
@@ -39,8 +39,8 @@ public String getWeather(String place){
         return stringBuffer.toString();
     } catch (IOException e) {
         e.printStackTrace();
+        return null;
     }
-    return null;
 }
 
 }

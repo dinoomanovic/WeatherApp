@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class RemoteFetch {
 
-    public static final String OPEN_WEATHER_MAP_API = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric";
+    public static final String OPEN_WEATHER_MAP_API = "http://api.openweathermap.org/data/2.5/weather?q=";
     public static final String ICON = "http://openweathermap.org/img/w/";
     public static final String METRIC = "&units=metric";
     public static final String IMPERIAL = "&units=imperial";

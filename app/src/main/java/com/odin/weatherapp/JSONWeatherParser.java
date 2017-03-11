@@ -1,6 +1,5 @@
 package com.odin.weatherapp;
 
-import com.odin.weatherapp.Models.Place;
 import com.odin.weatherapp.Models.Weather;
 
 import org.json.JSONArray;
@@ -16,16 +15,19 @@ public class JSONWeatherParser {
         Weather weather = new Weather();
         try {
             JSONObject jsonObject = new JSONObject(data);
-            Place place = new Place();
+            Weather.Place place = new Weather.Place();
             JSONObject coordObj = RemoteFetch.getJSONObject("coord",jsonObject);
             place.setLat(RemoteFetch.getFloat("lat",coordObj));
             place.setLon(RemoteFetch.getFloat("lon",coordObj));
-            JSONObject sysObj = RemoteFetch.getJSONObject("sys",jsonObject);
-            place.setCountry(RemoteFetch.getString("city",sysObj));
             place.setLastupdate(RemoteFetch.getInt("dt",jsonObject));
+            place.setCity(RemoteFetch.getString("name",jsonObject));
+
+
+
+            JSONObject sysObj = RemoteFetch.getJSONObject("sys",jsonObject);
+            place.setCountry(RemoteFetch.getString("country",sysObj));
             place.setSunrise(RemoteFetch.getInt("sunrise",sysObj));
             place.setSunset(RemoteFetch.getInt("sunset",sysObj));
-            place.setCity(RemoteFetch.getString("name",jsonObject));
             weather.place = place;
 
             JSONArray jsonArray = jsonObject.getJSONArray("weather");
@@ -38,9 +40,16 @@ public class JSONWeatherParser {
             JSONObject jsonWind = RemoteFetch.getJSONObject("wind",jsonObject);
             weather.wind.setSpeed(RemoteFetch.getFloat("speed",jsonWind));
             weather.wind.setDeg(RemoteFetch.getFloat("deg",jsonWind));
-
             JSONObject jsonCloud = RemoteFetch.getJSONObject("clouds",jsonObject);
             weather.clouds.setPrecipitation(RemoteFetch.getInt("all",jsonCloud));
+
+
+            JSONObject temperatureObj = RemoteFetch.getJSONObject("main",jsonObject);
+            weather.currentCondition.setTemperature(RemoteFetch.getFloat("temp",temperatureObj));
+            weather.currentCondition.setMinTemp(RemoteFetch.getFloat("temp_min",temperatureObj));
+            weather.currentCondition.setMaxTemp(RemoteFetch.getFloat("temp_max",temperatureObj));
+            weather.currentCondition.setHumidity(RemoteFetch.getFloat("humidity",temperatureObj));
+            weather.currentCondition.setPressure(RemoteFetch.getFloat("pressure",temperatureObj));
 
             return weather;
         } catch (JSONException e) {

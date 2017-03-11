@@ -26,4 +26,10 @@ public class CityPreferences {
     public void setCity(String city) {
         preferences.edit().putString("city", city).commit();
     }
+
+    public String getCountry() {return preferences.getString("country","BA");}
+
+    public void setCountry(String country)  { preferences.edit().putString("country",country).commit(); }
+
+
 }

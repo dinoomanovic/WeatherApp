@@ -28,10 +28,10 @@ public class Main implements Serializable
     private Double grndLevel;
     @SerializedName("humidity")
     @Expose
-    private Integer humidity;
+    private Double humidity;
     @SerializedName("temp_kf")
     @Expose
-    private Integer tempKf;
+    private Double tempKf;
     private final static long serialVersionUID = 6082331013038541701L;
 
     /**
@@ -52,7 +52,7 @@ public class Main implements Serializable
      * @param tempKf
      * @param tempMin
      */
-    public Main(Double temp, Double tempMin, Double tempMax, Double pressure, Double seaLevel, Double grndLevel, Integer humidity, Integer tempKf) {
+    public Main(Double temp, Double tempMin, Double tempMax, Double pressure, Double seaLevel, Double grndLevel, Double humidity, Double tempKf) {
         super();
         this.temp = temp;
         this.tempMin = tempMin;
@@ -142,28 +142,28 @@ public class Main implements Serializable
         return this;
     }
 
-    public Integer getHumidity() {
+    public Double getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Integer humidity) {
+    public void setHumidity(Double humidity) {
         this.humidity = humidity;
     }
 
-    public Main withHumidity(Integer humidity) {
+    public Main withHumidity(Double humidity) {
         this.humidity = humidity;
         return this;
     }
 
-    public Integer getTempKf() {
+    public Double getTempKf() {
         return tempKf;
     }
 
-    public void setTempKf(Integer tempKf) {
+    public void setTempKf(Double tempKf) {
         this.tempKf = tempKf;
     }
 
-    public Main withTempKf(Integer tempKf) {
+    public Main withTempKf(Double tempKf) {
         this.tempKf = tempKf;
         return this;
     }
