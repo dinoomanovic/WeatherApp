@@ -1,117 +1,74 @@
 package com.odin.weatherapp;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.EditText;
 
 import com.odin.weatherapp.Models.CityPreferences;
-import com.odin.weatherapp.WeatherHttpClient;
-import com.odin.weatherapp.RemoteFetch;
-import com.odin.weatherapp.Models.Weather;
+import com.odin.weatherapp.Utils.DataBoundAdapter;
+import com.odin.weatherapp.Utils.DataBoundViewHolder;
+import com.odin.weatherapp.databinding.WeatherFragmentBinding;
+import com.odin.weatherapp.databinding.WeatherLayoutBinding;
+
+import org.androidannotations.annotations.EFragment;
 
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * Created by mobil on 29.01.2017.
+ * Created by mobil on 04.03.2017.
  */
-
+@EFragment(R.layout.weather_fragment)
 public class WeatherFragment extends Fragment {
+    private static final String LOG_TAG = WeatherFragment.class.getSimpleName();
 
-    public ArrayList<Weather> weatherArrayList = new ArrayList<>();
-    public WeatherAdapter weatherAdapter;
-    public ProgressBar progressBar;
-    public Weather weather = new Weather();
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View weatherView = inflater.inflate(R.layout.weather_fragment, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
+        WeatherFragmentBinding binding = DataBindingUtil.inflate(inflater,
+                R.layout.weather_fragment, container, false);
         CityPreferences cityPreferences = new CityPreferences(getActivity());
-        weatherAdapter = new WeatherAdapter(getActivity(), weatherArrayList);
-        progressBar = ((ProgressBar) weatherView.findViewById(R.id.progressBar));
-        ListView weatherList = (ListView) weatherView.findViewById(R.id.mainList);
-      //  new GetWeatherData(getActivity()).execute(cityPreferences.getCity()+","+cityPreferences.getCountry()+RemoteFetch.METRIC);
-        new GetWeatherData(getActivity()).execute(cityPreferences.getCity()+RemoteFetch.METRIC);
 
-        weatherList.setAdapter(weatherAdapter);
-
-
-        return weatherView;
+        WeatherViewModel viewModel = new WeatherViewModel(getActivity());
+        binding.setData(viewModel);
+        viewModel.loadData(cityPreferences);
+        return binding.getRoot();
     }
 
+    public static class WeatherAdapter extends DataBoundAdapter<WeatherLayoutBinding> {
+        private List<WeatherItemViewModel> weatherItem = new ArrayList<>();
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    public class GetWeatherData extends AsyncTask<String,Void, Void> {
-        private Context context;
-
-        public GetWeatherData(Context context) {
-            this.context = context;
+        WeatherAdapter(WeatherItemViewModel... weatherViewModels) {
+            super(R.layout.weather_layout);
+            Collections.addAll(weatherItem, weatherViewModels);
         }
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
+        void setWeatherItem(List<WeatherItemViewModel> weatherItem) {
+            this.weatherItem = weatherItem;
+            try {
+                notifyDataSetChanged();
+            } catch (Exception e) {
+                Log.e(LOG_TAG, e.getLocalizedMessage(), e);
+            }
         }
 
         @Override
-        protected Void doInBackground(String... params) {
-            WeatherHttpClient weatherHttpClient = new WeatherHttpClient();
-            String data = weatherHttpClient.getWeather(params[0]);
-//            Log.d("WeatherDataString", data);
-            try {
-                //weatherArrayList.clear();
-                weather = JSONWeatherParser.getWeather(data);
-                weatherArrayList.add(weather);
-            } catch (Exception NullWeatherData) {
-                Log.e("Error Parsing: ", "City has space in text");
-            }
-            return null;
+        protected void bindItem(DataBoundViewHolder<WeatherLayoutBinding> holder, int position, List<Object> payloads) {
+            holder.binding.setData(weatherItem.get(position));
         }
 
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            progressBar.setVisibility(View.GONE);
-            weatherAdapter.notifyDataSetChanged();
+        @Override
+        public int getItemCount() {
+            return weatherItem.size();
         }
     }
-
 }

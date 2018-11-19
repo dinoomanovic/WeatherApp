@@ -1,10 +1,8 @@
 package com.odin.weatherapp.Utils;
 
 import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.Retrofit.Builder;
 import retrofit2.GsonConverterFactory;
-
+import retrofit2.Retrofit;
 
 /**
  * Created by mobil on 05.03.2017.
