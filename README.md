@@ -1,4 +1,4 @@
-Weather App using Retrofit2 and Custom List Adapter
+Weather App using Retrofit2 and MVVM pattern
 
 Features include:
 
@@ -7,8 +7,10 @@ Features include:
 - Using Google Maps API for picking the place
 - Using fragments to display data
 - Retrofit2 with Gson is used to fetch data from API
+- MVVM for better code organisation
+- RxJava: coming soon!
 
 Preview
 
-![alt tag](http://imgur.com/51qpDWO.png)
-![alt tag](http://imgur.com/I7ByFmO.png)
+![alt tag](https://imgur.com/a/k4cmKt4)
+![alt tag](https://imgur.com/a/k4cmKt4)
