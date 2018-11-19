@@ -12,5 +12,6 @@ Features include:
 
 Preview
 
-![alt tag](https://imgur.com/a/k4cmKt4)
-![alt tag](https://imgur.com/a/k4cmKt4)
+![alt tag](https://i.imgur.com/tUrKFBT.png)
+![alt tag](https://i.imgur.com/HYFRO7B.png)
+
