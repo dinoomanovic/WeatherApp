@@ -5,12 +5,13 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -21,6 +22,7 @@ import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.odin.weatherapp.Models.CityPreferences;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -37,19 +39,9 @@ public class MainActivity extends Activity {
     @ViewById(R.id.swipe_layout)
     protected SwipeRefreshLayout swipeRefreshLayout;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
-            findPlace(getWindow().getDecorView().getRootView().findViewById(R.id.swipe_layout));
-        }
-        return false;
+    @Click(R.id.searchText)
+    public void searchTextClicked() {
+        findPlace(swipeRefreshLayout);
     }
 
     public void changeCity(String city) {
@@ -64,6 +56,10 @@ public class MainActivity extends Activity {
 
     @AfterViews
     protected void initialize() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

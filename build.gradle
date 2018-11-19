@@ -29,7 +29,7 @@ allprojects {
 }
 
 ext {
-    AAVersion = '4.4.0'
+    AAVersion = '4.5.1'
 }
 
 task clean(type: Delete) {

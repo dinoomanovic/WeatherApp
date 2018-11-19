@@ -26,5 +26,6 @@
     <string name="connect_two_strings_comma">%1$s,%2$s</string>
     <string name="connect_two_strings">%1$s %2$s</string>
     <string name="connect_number">%1$d %2$s</string>
+    <string name="searchText">Search</string>
 
 </resources>

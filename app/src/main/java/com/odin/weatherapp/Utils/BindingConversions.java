@@ -4,7 +4,9 @@ import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.security.InvalidParameterException;
 
@@ -12,6 +14,14 @@ public class BindingConversions {
     @BindingAdapter({"adapter"})
     public static void adapter(RecyclerView view, RecyclerView.Adapter adapter) {
         view.setAdapter(adapter);
+    }
+
+    @BindingAdapter({"ellipsizeType"})
+    public static void setEllipsize(TextView view,
+                                    TextUtils.TruncateAt type) {
+        view.setEllipsize(type);
+        view.setSelected(true);
+        view.setSingleLine(true);
     }
 
     @BindingAdapter("srcCompat")

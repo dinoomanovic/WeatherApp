@@ -5,6 +5,7 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.widget.ProgressBar;
 
 import com.odin.weatherapp.Models.CityPreferences;
 import com.odin.weatherapp.ModelsRetro.WeatherData;
@@ -38,18 +39,21 @@ public class WeatherViewModel extends BaseObservable {
     public ArrayList<WeatherData> weatherArrayList = new ArrayList<>();
 
     private int recyclerViewVisible = GONE;
+    private ProgressBar progressBar;
 
-    public WeatherViewModel(Context context) {
+    public WeatherViewModel(Context context, ProgressBar progressBar) {
         this.contextWeakReference = new WeakReference<>(context);
+        this.progressBar = progressBar;
     }
 
     public void loadData(CityPreferences cityPreferences) {
         Context context = contextWeakReference.get();
-        if (context == null) {
+        if ((context == null) || (progressBar == null)) {
             noData();
             return;
         }
 
+        progressBar.setVisibility(VISIBLE);
         WeatherRestAdapter adapter = new WeatherRestAdapter();
         WeatherApi client = adapter.createService();
         Call<WeatherData> call = client.getWeather(cityPreferences.getCity(), APP_ID, METRIC);
@@ -90,10 +94,12 @@ public class WeatherViewModel extends BaseObservable {
 
             getAdapter().setWeatherItem(weatherViewModels);
             setRecyclerViewVisible(VISIBLE);
+            progressBar.setVisibility(GONE);
         }
 
         @Override
         public void onFailure(Call<WeatherData> call, Throwable t) {
+            progressBar.setVisibility(GONE);
 
         }
     }

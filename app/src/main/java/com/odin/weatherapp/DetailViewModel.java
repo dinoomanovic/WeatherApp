@@ -84,11 +84,7 @@ public class DetailViewModel extends BaseObservable {
                     Methods.getIcon(format(context.getString(R.string.connect_two_strings),
                             listData.get(24).getWeather().get(0).getIcon(), EMPTY_STRING)));
             DetailItemViewModel detailItemViewModel = new DetailItemViewModel();
-            detailItemViewModel.setDetailText(" < " + "Humidity: " + listData.get(0).getMain().getHumidity() +
-                    " | " + "Wind: " + listData.get(0).getWind().getSpeed() + " | " + "Pressure: "
-                    + listData.get(0).getMain().getPressure() + " | " + "Deg: "
-                    + listData.get(0).getWind().getDeg() + " | " + "Latitude: "
-                    + weatherDataList.getCity().getCoord().getLat() + "| " + "Longitude: " + weatherDataList.getCity().getCoord().getLon() + " > ");
+            detailItemViewModel.setDetailText(" < " + "Humidity: " + listData.get(0).getMain().getHumidity() + " | " + "Wind: " + listData.get(0).getWind().getSpeed() + " | " + "Pressure: " + listData.get(0).getMain().getPressure() + " | " + "Deg: " + listData.get(0).getWind().getDeg() + " | " + "Latitude: " + weatherDataList.getCity().getCoord().getLat() + "| " + "Longitude: " + weatherDataList.getCity().getCoord().getLon() + " > ");
 
             detailItemViewModel.setImageOne(imgOne);
             detailItemViewModel.setImageTwo(imgTwo);

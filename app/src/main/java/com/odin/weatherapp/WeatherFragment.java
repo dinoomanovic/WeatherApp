@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.odin.weatherapp.Models.CityPreferences;
 import com.odin.weatherapp.Utils.DataBoundAdapter;
@@ -37,8 +38,9 @@ public class WeatherFragment extends Fragment {
         WeatherFragmentBinding binding = DataBindingUtil.inflate(inflater,
                 R.layout.weather_fragment, container, false);
         CityPreferences cityPreferences = new CityPreferences(getActivity());
+        ProgressBar progressBar = getActivity().findViewById(R.id.progressBar);
 
-        WeatherViewModel viewModel = new WeatherViewModel(getActivity());
+        WeatherViewModel viewModel = new WeatherViewModel(getActivity(), progressBar);
         binding.setData(viewModel);
         viewModel.loadData(cityPreferences);
         return binding.getRoot();
