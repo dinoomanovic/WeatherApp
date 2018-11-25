@@ -8,6 +8,7 @@ Features include:
 - Using fragments to display data
 - Retrofit2 with Gson is used to fetch data from API
 - MVVM for better code organisation
+- RxJava for interacting with data
 - TBD: Room, LiveData and more!
 
 Preview
