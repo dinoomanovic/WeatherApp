@@ -1,12 +1,12 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Main implements Serializable
-{
+import java.io.Serializable;
+
+public class Main implements Serializable {
 
     @SerializedName("temp")
     @Expose
@@ -32,17 +32,12 @@ public class Main implements Serializable
     @SerializedName("temp_kf")
     @Expose
     private Double tempKf;
-    private final static long serialVersionUID = 6082331013038541701L;
 
     /**
      * No args constructor for use in serialization
-     * 
      */
-    public Main() {
-    }
 
     /**
-     * 
      * @param seaLevel
      * @param humidity
      * @param pressure

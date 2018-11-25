@@ -3,10 +3,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         google()
     }
     dependencies {
@@ -17,13 +13,56 @@ buildscript {
     }
 }
 
-
 allprojects {
     repositories {
         jcenter()
+        google()
         maven {
-            url 'https://maven.google.com/'
-            name 'Google'
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    task checkstyle(type: Checkstyle) {
+        showViolations = true
+        configFile file("../config/checkstyle/checkstyle.xml")
+        configProperties = ["suppressionFile": project(':').file('config/checkstyle/suppressions.xml')]
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+
+        // empty classpath
+        classpath = files()
+    }
+
+    task pmd(type: Pmd) {
+        description 'Identifying potential problems mainly dead code, duplicated code, cyclomatic complexity and overcomplicated expressions'
+        group 'verification'
+        ruleSetFiles = files("$project.rootDir/config/pmd/rules-pmd.xml")
+        source = fileTree('src/main/java')
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    task findbugs(type: FindBugs) {
+        description 'Find bugs mainly design flaws, bad practices, multithreaded correctness and code vulnerabilities.'
+        group 'verification'
+        excludeFilter = file("$project.rootDir/config/findbugs/rules-findbugs.xml")
+        classes = fileTree("$project.buildDir/intermediates/classes/debug/com/odin")
+        source = fileTree('src/main/java')
+        effort 'max'
+        reportLevel = "high"
+        classpath = files()
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
         }
     }
 }

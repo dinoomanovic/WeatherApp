@@ -2,7 +2,7 @@ package com.odin.weatherapp.Utils;
 
 import com.odin.weatherapp.R;
 
-public class Methods {
+public abstract class Methods {
     public static int getIcon(String iconName) {
         switch (iconName) {
             case "01d":

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.security.InvalidParameterException;
 
-public class BindingConversions {
+public abstract class BindingConversions {
     @BindingAdapter({"adapter"})
     public static void adapter(RecyclerView view, RecyclerView.Adapter adapter) {
         view.setAdapter(adapter);

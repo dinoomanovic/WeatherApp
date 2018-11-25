@@ -1,12 +1,12 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class List implements Serializable
-{
+import java.io.Serializable;
+
+public class List implements Serializable {
 
     @SerializedName("dt")
     @Expose
@@ -16,7 +16,7 @@ public class List implements Serializable
     private Main main;
     @SerializedName("weather")
     @Expose
-    private java.util.List<Weather> weather = null;
+    private java.util.List<Weather> weather;
     @SerializedName("clouds")
     @Expose
     private Clouds clouds;
@@ -28,24 +28,19 @@ public class List implements Serializable
     private Rain rain;
     @SerializedName("sys")
     @Expose
-    private Sys_ sys;
+    private SysPod sys;
     @SerializedName("dt_txt")
     @Expose
     private String dtTxt;
     @SerializedName("snow")
     @Expose
     private Snow snow;
-    private final static long serialVersionUID = -7076929444706479513L;
 
     /**
      * No args constructor for use in serialization
-     * 
      */
-    public List() {
-    }
 
     /**
-     * 
      * @param clouds
      * @param dt
      * @param wind
@@ -56,7 +51,7 @@ public class List implements Serializable
      * @param rain
      * @param main
      */
-    public List(Integer dt, Main main, java.util.List<Weather> weather, Clouds clouds, Wind wind, Rain rain, Sys_ sys, String dtTxt, Snow snow) {
+    public List(Integer dt, Main main, java.util.List<Weather> weather, Clouds clouds, Wind wind, Rain rain, SysPod sys, String dtTxt, Snow snow) {
         super();
         this.dt = dt;
         this.main = main;
@@ -147,15 +142,15 @@ public class List implements Serializable
         return this;
     }
 
-    public Sys_ getSys() {
+    public SysPod getSys() {
         return sys;
     }
 
-    public void setSys(Sys_ sys) {
+    public void setSys(SysPod sys) {
         this.sys = sys;
     }
 
-    public List withSys(Sys_ sys) {
+    public List withSys(SysPod sys) {
         this.sys = sys;
         return this;
     }

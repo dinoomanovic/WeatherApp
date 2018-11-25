@@ -1,12 +1,12 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Weather implements Serializable
-{
+import java.io.Serializable;
+
+public class Weather implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -20,17 +20,8 @@ public class Weather implements Serializable
     @SerializedName("icon")
     @Expose
     private String icon;
-    private final static long serialVersionUID = -1227993636257120819L;
 
     /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Weather() {
-    }
-
-    /**
-     * 
      * @param id
      * @param icon
      * @param description

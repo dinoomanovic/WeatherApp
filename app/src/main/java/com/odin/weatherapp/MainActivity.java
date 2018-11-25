@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -41,7 +40,7 @@ public class MainActivity extends Activity {
 
     @Click(R.id.searchText)
     public void searchTextClicked() {
-        findPlace(swipeRefreshLayout);
+        findPlace();
     }
 
     public void changeCity(String city) {
@@ -92,11 +91,10 @@ public class MainActivity extends Activity {
 
         ft.add(R.id.fragment1, weatherFragment);
         ft.add(R.id.fragment2, detailFragment);
-        ft.commit();
-
+        ft.commitAllowingStateLoss();
     }
 
-    public void findPlace(View view) {
+    public void findPlace() {
         try {
             Intent intent =
                     new PlaceAutocomplete
@@ -131,7 +129,7 @@ public class MainActivity extends Activity {
 
                     Log.e("myList", myList.toString());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("myList IOException", e.getLocalizedMessage());
                 }
                 Log.e("Tag", "Place: " + place.getAddress() + place.getPhoneNumber());
             } else if (resultCode == RESULT_ERROR) {

@@ -1,12 +1,12 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Wind implements Serializable
-{
+import java.io.Serializable;
+
+public class Wind implements Serializable {
 
     @SerializedName("speed")
     @Expose
@@ -14,17 +14,12 @@ public class Wind implements Serializable
     @SerializedName("deg")
     @Expose
     private Double deg;
-    private final static long serialVersionUID = 8626794263685566805L;
 
     /**
      * No args constructor for use in serialization
-     * 
      */
-    public Wind() {
-    }
 
     /**
-     * 
      * @param speed
      * @param deg
      */

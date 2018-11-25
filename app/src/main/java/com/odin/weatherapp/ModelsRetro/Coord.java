@@ -1,12 +1,12 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Coord implements Serializable
-{
+import java.io.Serializable;
+
+public class Coord implements Serializable {
 
     @SerializedName("lon")
     @Expose
@@ -14,17 +14,13 @@ public class Coord implements Serializable
     @SerializedName("lat")
     @Expose
     private Double lat;
-    private final static long serialVersionUID = 3360747193304147920L;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
-    public Coord() {
-    }
 
     /**
-     * 
      * @param lon
      * @param lat
      */

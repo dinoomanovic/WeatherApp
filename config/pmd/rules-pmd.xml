@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PMD rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <exclude-pattern>.*/R.java</exclude-pattern>
+    <exclude-pattern>.*/colors.xml</exclude-pattern>
+    <exclude-pattern>.*/gen/.*</exclude-pattern>
+
+    <rule ref="rulesets/java/basic.xml" />
+    <rule ref="rulesets/java/android.xml" />
+    <rule ref="rulesets/java/unnecessary.xml">
+        <!--there is no such thing as useless parentheses-->
+        <exclude name="UselessParentheses" />
+        <exclude name="UselessQualifiedThis" />
+    </rule>
+    <rule ref="rulesets/java/imports.xml">
+        <exclude name="TooManyStaticImports" />
+    </rule>
+    <rule ref="rulesets/java/unusedcode.xml" />
+    <rule ref="rulesets/java/junit.xml" />
+    <rule ref="rulesets/java/logging-java.xml" />
+    <rule ref="rulesets/java/braces.xml" />
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="AvoidDuplicateLiterals" />
+    </rule>
+    <rule ref="rulesets/java/clone.xml" />
+    <rule ref="rulesets/java/finalizers.xml" />
+    <rule ref="rulesets/java/design.xml">
+        <!--696-->
+        <exclude name="ConfusingTernary" />
+        <!--1041-->
+        <exclude name="FieldDeclarationsShouldBeAtStartOfClass" />
+        <!--1156-->
+        <exclude name="ImmutableField" />
+        <!--33-->
+        <exclude name="ConstructorCallsOverridableMethod" />
+        <!--197-->
+        <exclude name="UncommentedEmptyConstructor" />
+        <!--47, WMC needs to be 47 or less, ATFD needs to be below 5 and TCC needs to be above 1/3-->
+        <exclude name="GodClass" />
+
+        <!--272-->
+        <exclude name="UncommentedEmptyMethodBody" />
+        <!--54-->
+        <exclude name="CompareObjectsWithEquals" />
+        <!--29-->
+        <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
+        <!--122-->
+        <exclude name="AvoidSynchronizedAtMethodLevel" />
+        <!--139-->
+        <exclude name="AvoidDeeplyNestedIfStmts" />
+        <!--52-->
+        <exclude name="UseLocaleWithCaseConversions" />
+
+        <exclude name="PreserveStackTrace" />
+        <exclude name="AbstractClassWithoutAbstractMethod" />
+        <exclude name="SimplifyBooleanReturns" />
+        <exclude name="UseVarargs" />
+        <exclude name="SwitchDensity" />
+
+        <exclude name="TooFewBranchesForASwitchStatement" />
+        <exclude name="AccessorClassGeneration" />
+
+        <exclude name="ReturnEmptyArrayRatherThanNull" />
+        <exclude name="UnsynchronizedStaticDateFormatter" />
+        <exclude name="SimpleDateFormatNeedsLocale" />
+        <exclude name="NonStaticInitializer" />
+        <exclude name="SimplifyConditional" />
+
+        <exclude name="AssignmentToNonFinalStatic" />
+        <exclude name="SingularField" />
+        <exclude name="MissingBreakInSwitch" />
+        <exclude name="OptimizableToArrayCall" />
+    </rule>
+    <rule ref="rulesets/java/typeresolution.xml">
+        <exclude name="SignatureDeclareThrowsException" />
+    </rule>
+
+</ruleset>

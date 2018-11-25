@@ -1,27 +1,23 @@
 
 package com.odin.weatherapp.ModelsRetro;
 
-import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Sys implements Serializable
-{
+import java.io.Serializable;
+
+public class Sys implements Serializable {
 
     @SerializedName("population")
     @Expose
     private Integer population;
-    private final static long serialVersionUID = 467884441353404158L;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
-    public Sys() {
-    }
 
     /**
-     * 
      * @param population
      */
     public Sys(Integer population) {
